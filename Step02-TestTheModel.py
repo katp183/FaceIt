@@ -4,7 +4,7 @@ import numpy as np
 import cv2
 import os
 
-model_file = "models/emotion_model.h5"
+model_file = "C:/Users/kevin/Proyectos/models/emotion_model.h5"
 model = tf.keras.models.load_model(model_file)
 print(model.summary())
 
@@ -12,7 +12,7 @@ batchSize = 32
 
 #get categories
 print("Categories :")
-trainPath = "C:/Users/kevin/archive/train"
+trainPath = "C:/Users/kevin/Proyectos/archive/train"
 categories = os.listdir(trainPath)
 categories.sort()
 print(categories)
@@ -26,7 +26,7 @@ def findFace(pathForImage):
     image = cv2.imread(pathForImage)
     gray = cv2.cvtColor(image,cv2.COLOR_BGR2GRAY)
 
-    haarCascadeFile="e:/temp/haarcascade_frontalface_default.xml"
+    haarCascadeFile="C:/Users/kevin/Proyectos/models/haarcascade_frontalface_default.xml"
     face_cascade = cv2.CascadeClassifier(haarCascadeFile)
     faces = face_cascade.detectMultiScale(gray)
 
@@ -49,9 +49,21 @@ def prepareImageForModel(faceImage):
 
 
 
+# Directorio donde está este script
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# test Image
-testImagePath = "TensorFlowProjects\Emotion-Detection\suprised.jpg"
+# Construye la ruta completa
+testImagePath = os.path.join(BASE_DIR, "Hapyface.jpg")
+
+# —–––––––––––––––––––––––––––––––
+#¡DEBUG! Comprueba qué ruta está usando y si el archivo existe:
+print("BASE_DIR       :", BASE_DIR)
+print("testImagePath  :", testImagePath)
+print("Archivo existe?:", os.path.isfile(testImagePath))
+
+# Ahora sigue con la detección…
+faceGrayImage = findFace(testImagePath)
+#testImagePath = "C:/Users/kevin/Proyectos/Hapyface.jpg"
 #testImagePath = "TensorFlowProjects\Emotion-Detection\Happy.jpg"
 
 faceGrayImage = findFace(testImagePath)

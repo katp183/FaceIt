@@ -5,8 +5,8 @@ import os
 import matplotlib.pyplot as plt
 
 # Paths to train and test data
-trainPath = "C:/Users/kevin/archive/train"
-testPath  = "C:/Users/kevin/archive/test"
+trainPath = "C:/Users/kevin/Proyectos/archive/train"
+testPath  = "C:/Users/kevin/Proyectos/archive/test"
 
 # Load folder categories
 folderList = sorted(os.listdir(trainPath))
@@ -138,7 +138,4 @@ plt.legend()
 plt.show()
 
 # Save the model
-if not os.path.exists("models"):
-    os.makedirs("models")
-
-model.save("models/emotion_model.h5")
+model.save("C:/Users/kevin/Proyectos/models/emotion_model.h5")
