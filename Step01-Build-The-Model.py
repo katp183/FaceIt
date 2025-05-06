@@ -138,5 +138,7 @@ plt.legend()
 plt.show()
 
 # Save the model
-model.save("e:/temp/emotion_model.h5")
+if not os.path.exists("models"):
+    os.makedirs("models")
 
+model.save("models/emotion_model.h5")
